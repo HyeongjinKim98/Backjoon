@@ -1,4 +1,4 @@
-# python
+# Backjoon
 
 
 # # 1931 : 회의실 배정
