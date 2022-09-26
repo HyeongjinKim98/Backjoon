@@ -39,3 +39,5 @@ print(cnt)
 ```
 첫번째 loop 에서는 정렬된 배열에서 첫번째 값을 선택한다. 첫 회의가 배정되고 배정된 회의의 종료시간이 end에 저장된다.
 정렬을 미리 해두었기 때문에 배열을 순차적으로 검색하면서 종료시간 end와 시작시간 값만 비교하며 count하면 된다.
+
+full code : https://github.com/HyeongjinKim98/python/blob/cb8ab4ff11f61cd5f0aac05a640dd27205d780e8/1931.py
