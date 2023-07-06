@@ -1,15 +1,14 @@
 import sys
 input = sys.stdin.readline
-
-n, k = map(int, input().split())
-numbers = input().rstrip()
+N,K = map(int,input().split())
+num = input().rstrip()
 stack = []
-for number in numbers:
-    while stack and stack[-1] < number and k > 0:
+for item in num :
+    while stack and stack[-1] < item and K>0 :
         stack.pop()
-        k -= 1
-    stack.append(number)
-if k > 0:
-    print(''.join(stack[:-k]))
+        K -=1
+    stack.append(item)
+if K > 0:
+    print(''.join(stack[:-K]))
 else:
     print(''.join(stack))
