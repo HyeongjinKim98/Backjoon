@@ -5,7 +5,7 @@ public class Main {
 		int N = sc.nextInt();
 		int K = sc.nextInt();
 		
-		Deque<Integer> q = new LinkedList<Integer>();
+		Queue<Integer> q = new LinkedList<Integer>();
 		
 		for (int i = 1; i <= N; i++) {
 			q.offer(i);
@@ -23,5 +23,6 @@ public class Main {
 		}
 		sb.append(">");
 		System.out.println(sb.toString());
+		sc.close();
 	}
 }
