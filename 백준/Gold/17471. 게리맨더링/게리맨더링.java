@@ -35,8 +35,9 @@ public class Main {
 				if(v[i] == true  && a == 0) a = i;
 				if(v[i] == false && b == 0) b = i;
 			}
-			if(a>0 && b>0) {
+			if(a>0 && b>0 && g<ans) {
 				if(check(map,v,cnt,N,a) + check(map,v,N-cnt,N,b) == N) {
+//					System.out.println(g + " : " + Arrays.toString(v));
 					ans = Math.min(ans, g);
 				}
 			}
@@ -77,6 +78,5 @@ public class Main {
 		}
 		comb(v, map, pop, 1, N, sum, 0);
 		System.out.println((ans==Integer.MAX_VALUE)?-1:ans);
-		
 	}
 }
