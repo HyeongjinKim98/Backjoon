@@ -5,7 +5,7 @@ public class Main{
 	static int N,M;
 	static List<Integer>[] col;
 	static boolean[] v;
-	
+	static StringBuilder sb;
 	static void solve(int i) {
 		v[i] = true;
 		for (int j = 0; j < col[i].size(); j++) {
@@ -15,12 +15,13 @@ public class Main{
 				solve(next);
 			}
 		}
-		System.out.print(i + " ");
+		sb.append(i).append(" ");
 	}
 	public static void main(String[] args)throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
+		sb = new StringBuilder();
 		st= new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
@@ -42,5 +43,6 @@ public class Main{
 				solve(i);
 			}
 		}
+		System.out.println(sb.toString());
 	}
 }
