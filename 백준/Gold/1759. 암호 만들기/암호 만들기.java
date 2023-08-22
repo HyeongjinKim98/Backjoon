@@ -1,29 +1,31 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
-	static int L, C;
-	static char[] letters;
-	static char[] pw;
-	static boolean check(char[] pw) {
-		int a  = 0, b = 0;
-		for (char c : pw)
-			if(c == 'a'||c == 'e'||c == 'i'||c == 'o'||c == 'u') a++;
-			else b++;
-		return (a >= 1 && b >= 2);
-		
+public class Main{
+	
+	static boolean isVowel(char c) {
+		return (c == 'a'||c == 'e'||c == 'i'||c == 'o'||c == 'u') ? true : false;
 	}
-	static void comb(int cnt, int s) {
-		if(cnt == L) {
-			if(check(pw)) {
-				for (char c : pw) System.out.print(c);
-				System.out.println();
-			}
+	static String result(char[] c) {
+		String res ="";
+		for (int i = 0; i < c.length; i++) res += c[i];
+		return res;
+	}
+	
+	static void comb(char[] letters, int s, char[] pw, boolean[] v, int L, int C, int cnt, int a, int b) {
+		char current = letters[s];
+		pw[cnt] = current;
+		if(isVowel(current)) a++; else b++;
+		if(cnt == L-1) {
+			if(a>=1 && b>=2) System.out.println(result(pw));
 			return;
 		}
 		for (int i = s; i < C; i++) {
-			pw[cnt] = letters[i];
-			comb(cnt + 1, i + 1);
+			if(!v[i]) {
+				v[i] = true;
+				comb(letters, i, pw, v, L, C, cnt+1, a, b);
+				v[i] = false;
+			}
 		}
 	}
 	public static void main(String[] args)throws Exception {
@@ -31,17 +33,23 @@ public class Main {
 		StringTokenizer st;
 		
 		st = new StringTokenizer(br.readLine());
-		L = Integer.parseInt(st.nextToken());
-		C = Integer.parseInt(st.nextToken());
+		int L = Integer.parseInt(st.nextToken());
+		int C = Integer.parseInt(st.nextToken());
 		
-		letters = new char[C];
-		pw = new char[L];
+		StringBuilder sb = new StringBuilder();
+		char[] letters = new char[C];
+		char[] pw = new char[L];
+		boolean[] v= new boolean[C];
 		st = new StringTokenizer(br.readLine());
 		
 		for (int i = 0; i < C; i++) letters[i] = st.nextToken().charAt(0);
-		// 일단 정렬
+		
 		Arrays.sort(letters);
 		
-		comb(0,0);
+		for (int i = 0; i < C; i++) {
+			v[i] = true;
+			comb(letters, i, pw, v, L, C, 0, 0, 0);
+			v[i] = false;	
+		}
 	}
 }
