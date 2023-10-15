@@ -17,14 +17,7 @@ public class Main {
 
                     // 2초 소요
                     time += 2 * block_cut;
-
                 }
-            }
-        }
-        // 2. 보유 블록으로 메꾸기 위한 탐색
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                // 현재 위치가 정해진 높이보다 낮다면 블록을 쌓는다
                 if (map[i][j] < current_height) {
 
                     // 보유 블록 개수가 차이만큼 줄어든다.
