@@ -3,16 +3,12 @@
 import java.util.*;
 import java.io.*;
 public class Main {
-
-    static int N, tmp, result;
-    static int[] op;
-    static int[][] dices;
-    static void solve(int depth, int side, int acc){
+    static int result;
+    static void solve(int N,int depth, int side, int acc, int[][] dices, int[] op){
         if(depth==N){
-            tmp = Math.max(acc, tmp);
+            result = Math.max(acc, result);
             return;
         }
-
         // 윗면 index
         int op1_idx = 1;
 
@@ -34,20 +30,18 @@ public class Main {
                 break;
             }
         }
-        solve(depth+1, dices[depth][op2_idx], acc+max_side);
+        solve(N, depth +1, otherside, acc+max_side, dices, op);
     }
     public static void main(String[] args)throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        dices = new int[N][7];
-
-        result = N*6;
-        tmp = 0;
+        int N = Integer.parseInt(br.readLine());
+        int[][] dices = new int[N][7];
+        result = 0;
 
         //0 <-> 5
         //1 <-> 3
         //2 <-> 4
-        op = new int[] {0, 6, 4, 5, 2, 3, 1};
+        int[] op = new int[] {0, 6, 4, 5, 2, 3, 1};
 
         for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -58,9 +52,8 @@ public class Main {
 
 //        solve(0, N, 1, 0);
         for (int i = 1; i <= 6; i++) {
-            solve(0, dices[0][i], 0);
+            solve(N, 0, dices[0][i], 0, dices, op);
         }
-
-        System.out.println(tmp);
+        System.out.println(result);
     }
 }
